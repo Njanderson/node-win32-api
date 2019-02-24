@@ -102,15 +102,14 @@ function createWindow(title: string): Buffer {
   knl32.GetModuleHandleExW(0, null, hInstance)
 
   // Common Controls
-  const icc = new Struct(DS.INITCOMMONCONTROLSEX)()
-
+  const icc: M.InitCommonControlsEXStruct = new Struct(DS.INITCOMMONCONTROLSEX)()
   icc.dwSize = 8
   icc.dwICC = 0x40ff
   comctl32.InitCommonControlsEx(icc.ref())
 
 
   // Window Class
-  const wClass = new Struct(DS.WNDCLASSEX)()
+  const wClass: M.WndClassEXStruct = new Struct(DS.WNDCLASSEX)()
 
   wClass.cbSize = Config._WIN64 ? 80 : 48 // x86 = 48, x64=80
   wClass.style = 0
@@ -118,12 +117,12 @@ function createWindow(title: string): Buffer {
   wClass.cbClsExtra = 0
   wClass.cbWndExtra = 0
   wClass.hInstance = hInstance
-  wClass.hIcon = null
-  wClass.hCursor = null
-  wClass.hbrBackground = null
-  wClass.lpszMenuName = null
+  wClass.hIcon = ref.NULL
+  wClass.hCursor = ref.NULL
+  wClass.hbrBackground = ref.NULL
+  wClass.lpszMenuName = ref.NULL
   wClass.lpszClassName = className
-  wClass.hIconSm = null
+  wClass.hIconSm = ref.NULL
 
   if (!user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
