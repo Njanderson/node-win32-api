@@ -1,7 +1,7 @@
 # win32-api
 Windows win32 api 接口定义
 
-[![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
+[![Version](https://img.shields.io/github/package-json/v/waitingsong/node-win32-api/napi.svg)](https://github.com/waitingsong/node-win32-api/tree/napi)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
@@ -14,12 +14,12 @@ Windows win32 api 接口定义
 
 ## 安装
 ```powershell
-npm install win32-api
+npm install win32-api@^4
 ```
 
-**注意: `ffi-api` 尚不稳定, 继续使用 `ffi`**
+**注意: `ffi-api` 尚不稳定, 建议继续使用 `ffi`**
 ```powershell
-npm install win32-api@^3.7.0
+npm install win32-api@latest
 ```
 
 ## 使用
