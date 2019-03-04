@@ -28,6 +28,10 @@ describe(filename, () => {
   it('find app window by user32.EnumWindows()', done => {
     const child = spawn('calc.exe')
     const enumWindowsProc = createEnumWinProc()
+    process.on('exit', () => {
+      // tslint:disable-next-line:no-unused-expression
+      enumWindowsProc // avoid gc
+    })
 
     of(null).pipe(
       delay(1000),
@@ -40,10 +44,9 @@ describe(filename, () => {
           user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
           const buf = Buffer.alloc(title.length * 2)
-          let str: string = ''
-
           user32.GetWindowTextW(hWnd, buf, buf.byteLength)
-          str = buf.toString('ucs2').replace(/\0+$/, '')
+
+          const str = buf.toString('ucs2').replace(/\0+$/, '')
           assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 
           const id = Math.round(Math.random() * 1000000)
@@ -104,11 +107,6 @@ function createEnumWinProc(): M.WNDENUMPROC {
       return true
     },
   )
-
-  process.on('exit', () => {
-    // tslint:disable-next-line:no-unused-expression
-    typeof enumWindowsProc // avoid gc
-  })
 
   return enumWindowsProc
 }
