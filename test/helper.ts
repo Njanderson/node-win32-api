@@ -57,10 +57,10 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
   knl32.GetModuleHandleExW(0, ref.NULL, hInstance)
 
   // Common Controls
-  const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
-  icc.dwSize = 8
-  icc.dwICC = 0x40ff
-  comctl32.InitCommonControlsEx(icc.ref())
+  // const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
+  // icc.dwSize = 8
+  // icc.dwICC = 0x40ff
+  // comctl32.InitCommonControlsEx(icc.ref())
 
   // Window Class
   const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
